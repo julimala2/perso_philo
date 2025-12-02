@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -Werror -g3 -pthread
 #-fsanitize=address
 
 
-SRC = 
+SRC = init.c main.c routine.c threads.c utils.c
 OBJ = $(SRC:.c=.o)
 
 ORANGE = $(shell tput setaf 202)
