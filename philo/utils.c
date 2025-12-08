@@ -6,7 +6,7 @@
 /*   By: juliette-malaval <juliette-malaval@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 14:55:20 by jmalaval          #+#    #+#             */
-/*   Updated: 2025/11/07 16:24:36 by juliette-ma      ###   ########.fr       */
+/*   Updated: 2025/12/08 17:25:39 by juliette-ma      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void ft_free_struct(t_data *data)
 			free(data->threads_id);
 		if(data->philosophers)
 			free(data->philosophers);
+		free(data);
 	}
 }
 

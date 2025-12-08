@@ -6,7 +6,7 @@
 /*   By: juliette-malaval <juliette-malaval@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 13:46:35 by jmalaval          #+#    #+#             */
-/*   Updated: 2025/11/07 16:55:28 by juliette-ma      ###   ########.fr       */
+/*   Updated: 2025/12/08 17:25:21 by juliette-ma      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int main(int ac, char **av)
         return(1);
     if (set_parameters(av, data) == 1)
     {
-        free(data);
+        ft_free_struct(data);
         return(1);
     }
     if (init_malloc(data))
@@ -38,6 +38,7 @@ int main(int ac, char **av)
     init_forks(data);
     init_philosophers(data);
     init_threads(data);
+    ft_free_struct(data);
     return(0);
 }
 

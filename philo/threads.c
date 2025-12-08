@@ -6,7 +6,7 @@
 /*   By: juliette-malaval <juliette-malaval@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 16:07:56 by juliette-ma       #+#    #+#             */
-/*   Updated: 2025/11/07 17:38:02 by juliette-ma      ###   ########.fr       */
+/*   Updated: 2025/12/08 17:25:36 by juliette-ma      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,32 +22,37 @@ void *monitor(void *data_ptr)
     int ate_enough;
 
     data = (t_data *)data_ptr;
-    ate_enough = 0;
     while (1)
     {
         i = 0;
+        ate_enough = 1;
         while (i < data->number_of_philosophers)
         {
+            pthread_mutex_lock(&data->check_mutex);
             current_time = get_time_in_ms();
             if (!data->philosophers[i].is_eating && (current_time - data->philosophers[i].last_eat_time) > data->time_to_die)
             {
-                pthread_mutex_lock(&data->print_mutex);
-                printf("%ld %d %s\n", current_time - data->start_time, data->philosophers[i].id, DIED);
-                pthread_mutex_unlock(&data->print_mutex);
                 j = 0;
                 while (j < data->number_of_philosophers)
                     data->philosophers[j++].is_dead = 1;
+                pthread_mutex_unlock(&data->check_mutex);
+                pthread_mutex_lock(&data->print_mutex);
+                printf("%ld %d %s\n", current_time - data->start_time, data->philosophers[i].id, DIED);
+                pthread_mutex_unlock(&data->print_mutex);
                 return(NULL);
             }
             else if (data->number_of_times_each_philosopher_must_eat != -1 && data->philosophers[i].eat_count < data->number_of_times_each_philosopher_must_eat)
                 ate_enough = 0;
+            pthread_mutex_unlock(&data->check_mutex);
             i++;
         }
         if (ate_enough && data->number_of_times_each_philosopher_must_eat != -1)
         {
+            pthread_mutex_lock(&data->check_mutex);
             j = 0;
             while (j < data->number_of_philosophers)
                 data->philosophers[j++].is_dead = 1;
+            pthread_mutex_unlock(&data->check_mutex);
             return(NULL);
         }
         usleep(1000);

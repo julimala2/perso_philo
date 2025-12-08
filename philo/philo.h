@@ -6,7 +6,7 @@
 /*   By: juliette-malaval <juliette-malaval@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:01:56 by jmalaval          #+#    #+#             */
-/*   Updated: 2025/11/07 17:36:13 by juliette-ma      ###   ########.fr       */
+/*   Updated: 2025/12/08 17:25:28 by juliette-ma      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct s_data
     pthread_mutex_t *forks;
     pthread_t *threads_id;
     pthread_mutex_t print_mutex;
+    pthread_mutex_t check_mutex;
 } t_data;
 
 
