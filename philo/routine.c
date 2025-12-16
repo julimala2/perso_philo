@@ -6,7 +6,7 @@
 /*   By: juliette-malaval <juliette-malaval@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:56:35 by juliette-ma       #+#    #+#             */
-/*   Updated: 2025/12/08 17:25:32 by juliette-ma      ###   ########.fr       */
+/*   Updated: 2025/12/11 16:15:39 by juliette-ma      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,13 @@ void    *routine(void *philo_ptr)
         pthread_mutex_unlock(philo->r_fork);
         return (NULL);
     }
+    if (philo->id % 2 == 0)
+        usleep(1000);
     while (!philo->is_dead)
     {
         eat(philo);
         print_action(philo, THINK);
+        usleep(1000);
     }
     return (NULL);
 }

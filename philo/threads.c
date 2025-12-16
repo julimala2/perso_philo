@@ -6,7 +6,7 @@
 /*   By: juliette-malaval <juliette-malaval@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 16:07:56 by juliette-ma       #+#    #+#             */
-/*   Updated: 2025/12/08 17:25:36 by juliette-ma      ###   ########.fr       */
+/*   Updated: 2025/12/11 15:46:44 by juliette-ma      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ void *monitor(void *data_ptr)
             pthread_mutex_unlock(&data->check_mutex);
             return(NULL);
         }
-        usleep(1000);
     }
     return(NULL);
 }

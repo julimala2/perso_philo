@@ -6,7 +6,7 @@
 /*   By: juliette-malaval <juliette-malaval@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 13:46:35 by jmalaval          #+#    #+#             */
-/*   Updated: 2025/12/08 17:25:21 by juliette-ma      ###   ########.fr       */
+/*   Updated: 2025/12/11 15:32:56 by juliette-ma      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int ac, char **av)
     data = malloc(sizeof(t_data));
     if (!data)
         return(1);
-    if (set_parameters(av, data) == 1)
+    if (set_parameters(av, data))
     {
         ft_free_struct(data);
         return(1);
@@ -44,7 +44,7 @@ int main(int ac, char **av)
 
 int    set_parameters(char **av, t_data *data)
 {
-    if (check_digit_args(av) == 1)
+    if (check_digit_args(av))
         return(1);
     data->number_of_philosophers = ft_atoi(av[1]);
     if (data->number_of_philosophers < 1)
