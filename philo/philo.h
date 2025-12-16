@@ -6,7 +6,7 @@
 /*   By: jmalaval <jmalaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 11:01:56 by jmalaval          #+#    #+#             */
-/*   Updated: 2025/12/16 16:36:56 by jmalaval         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:50:27 by jmalaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,7 @@
 # define EAT "is eating"
 # define DIED "died"
 
-#endif
-
-struct s_data;
+struct	s_data;
 
 typedef struct s_philo
 {
@@ -93,3 +91,5 @@ void				ft_free_struct(t_data *data);
 // main.c
 int					set_parameters(char **av, t_data *data);
 int					check_digit_args(char **av);
+
+#endif

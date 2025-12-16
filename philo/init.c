@@ -6,7 +6,7 @@
 /*   By: jmalaval <jmalaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:47:18 by juliette-ma       #+#    #+#             */
-/*   Updated: 2025/12/16 16:33:49 by jmalaval         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:48:51 by jmalaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	init_malloc(t_data *data)
 {
-    data->ate_enough = 1;
+	data->ate_enough = 1;
 	data->threads_id = malloc(data->number_of_philosophers * sizeof(pthread_t));
 	if (!data->threads_id)
 		return_with_message_and_free(NULL, 1, 1, data);

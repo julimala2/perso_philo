@@ -6,7 +6,7 @@
 /*   By: jmalaval <jmalaval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 16:07:56 by juliette-ma       #+#    #+#             */
-/*   Updated: 2025/12/16 16:45:06 by jmalaval         ###   ########.fr       */
+/*   Updated: 2025/12/16 16:48:19 by jmalaval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,12 @@ void	*monitor(void *data_ptr)
 	return (NULL);
 }
 
-
 void	*kill_philosophers(t_data *data, int print, long current_time, int i)
 {
 	int	j;
 
 	j = 0;
-    if (print == 0)
+	if (print == 0)
 		pthread_mutex_lock(&data->check_mutex);
 	while (j < data->number_of_philosophers)
 		data->philosophers[j++].is_dead = 1;
