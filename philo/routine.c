@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalaval <jmalaval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliette-malaval <juliette-malaval@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 11:56:35 by juliette-ma       #+#    #+#             */
-/*   Updated: 2025/12/16 15:22:23 by jmalaval         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:12:10 by juliette-ma      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void	manage_forks(t_philo *philo, char c)
 
 void	eat(t_philo *philo)
 {
-	manage_forks(philo, 's');
 	pthread_mutex_lock(&philo->data->check_mutex);
 	philo->is_eating = 1;
-	philo->last_eat_time = get_time_in_ms();
 	pthread_mutex_unlock(&philo->data->check_mutex);
+	manage_forks(philo, 's');
 	print_action(philo, EAT);
 	usleep(philo->data->time_to_eat * 1000);
 	pthread_mutex_lock(&philo->data->check_mutex);
+	philo->last_eat_time = get_time_in_ms();
 	philo->is_eating = 0;
 	philo->eat_count++;
 	pthread_mutex_unlock(&philo->data->check_mutex);

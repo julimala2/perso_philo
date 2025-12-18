@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   threads.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmalaval <jmalaval@student.42.fr>          +#+  +:+       +#+        */
+/*   By: juliette-malaval <juliette-malaval@stud    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 16:07:56 by juliette-ma       #+#    #+#             */
-/*   Updated: 2025/12/16 16:48:19 by jmalaval         ###   ########.fr       */
+/*   Updated: 2025/12/18 13:20:31 by juliette-ma      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,19 @@ void	*monitor(void *data_ptr)
 	data = (t_data *)data_ptr;
 	while (1)
 	{
-		i = 0;
-		while (i < data->number_of_philosophers)
+		i = -1;
+		data->ate_enough = 1;
+		while (++i < data->number_of_philosophers)
 		{
 			pthread_mutex_lock(&data->check_mutex);
 			current_time = get_time_in_ms();
 			if (!data->philosophers[i].is_eating && (current_time
 					- data->philosophers[i].last_eat_time) > data->time_to_die)
 				return (kill_philosophers(data, 1, current_time, i));
-			else if (data->must_eat_count != -1
+			if (data->must_eat_count != -1
 				&& data->philosophers[i].eat_count < data->must_eat_count)
 				data->ate_enough = 0;
 			pthread_mutex_unlock(&data->check_mutex);
-			i++;
 		}
 		if (data->ate_enough && data->must_eat_count != -1)
 			return (kill_philosophers(data, 0, 0, 0));
