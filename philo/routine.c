@@ -76,6 +76,7 @@ void	print_action(t_philo *philo, char *message)
 void	*routine(void *philo_ptr)
 {
 	t_philo	*philo;
+	int		dead;
 
 	philo = (t_philo *)philo_ptr;
 	if (philo->data->number_of_philosophers == 1)
@@ -88,11 +89,17 @@ void	*routine(void *philo_ptr)
 	}
 	if (philo->id % 2 == 0)
 		usleep(1000);
-	while (!philo->is_dead)
+	pthread_mutex_lock(&philo->data->check_mutex);
+	dead = philo->is_dead;
+	pthread_mutex_unlock(&philo->data->check_mutex);
+	while (!dead)
 	{
 		eat(philo);
 		print_action(philo, THINK);
 		usleep(1000);
+		pthread_mutex_lock(&philo->data->check_mutex);
+		dead = philo->is_dead;
+		pthread_mutex_unlock(&philo->data->check_mutex);
 	}
 	return (NULL);
 }

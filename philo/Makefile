@@ -21,7 +21,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	$(CC) $(OBJ) -o $(NAME)
-	@echo -e "$(GREEN)Compiling philo OK$(RESET)"
+	@echo "$(GREEN)Compiling philo OK$(RESET)"
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@	
